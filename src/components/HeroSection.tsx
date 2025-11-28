@@ -1,25 +1,16 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import heroImg from "@/assets/landing/hero-image.png";
 
-export type HeroSectionProps = {
-  className?: string;
-  heroImagePath?: string;
-};
-
-export const HeroSection = ({
-  className,
-  heroImagePath = "/hero-image.png",
-}: HeroSectionProps) => {
+export const HeroSection = () => {
   return (
-    <section
-      className={`relative min-h-screen flex items-center justify-center ${className || ""}`}
-    >
+    <section className="relative min-h-screen flex items-center justify-center">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-full">
           <Image
-            src={heroImagePath}
+            src={heroImg}
             alt="Flame of Hope - Community healthcare and empowerment"
             fill
             priority
