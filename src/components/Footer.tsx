@@ -11,19 +11,13 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 
-const aboutLinks = [
-  { href: "/careers", label: "Career" },
-  { href: "/angel-investor", label: "Angel Investor" },
-  { href: "/terms", label: "Terms of Service" },
-  { href: "/legal", label: "Legal Information" },
-  { href: "/credits", label: "Credits" },
-];
-
 const quickLinks = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About Us" },
-  { href: "/news", label: "News" },
+  { href: "/about", label: "About" },
+  { href: "/programs", label: "Programs" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/volunteer", label: "Volunteer" },
+  { href: "/sponsor", label: "Sponsor" },
   { href: "/contact", label: "Contact Us" },
 ];
 
@@ -37,7 +31,7 @@ export const Footer = () => {
   return (
     <footer className="bg-[#0f0f0f] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_0.8fr] lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] gap-10 lg:gap-12">
           {/* Brand */}
           <div>
             <div
@@ -70,20 +64,6 @@ export const Footer = () => {
                 </Link>
               ))}
             </div>
-          </div>
-
-          {/* About */}
-          <div>
-            <h3 className="text-brand-main font-semibold mb-4">About</h3>
-            <ul className="space-y-2 text-sm text-gray-300">
-              {aboutLinks.map(({ href, label }) => (
-                <li key={label}>
-                  <Link href={href} className="hover:text-white transition-fx">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Quick Links */}

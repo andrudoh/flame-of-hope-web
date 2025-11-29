@@ -63,3 +63,7 @@ body {
 .nav-link-border:hover::after {
   width: 100%;
 }
+
+.nav-link-border-active::after {
+  width: 100%;
+}

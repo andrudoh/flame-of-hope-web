@@ -1,4 +1,5 @@
 import * as React from "react";
+import { motion } from "framer-motion";
 import {
   Users,
   TestTube,
@@ -80,9 +81,11 @@ export const CoreFocusAreas = ({ className }: CoreFocusAreasProps) => {
             {focusAreas.map((area) => {
               const IconComponent = area.icon;
               return (
-                <div
+                <motion.div
                   key={area.id}
                   className="bg-white rounded-xl shadow-sm p-3 sm:p-4 md:p-6 flex flex-col items-center text-center"
+                  whileHover={{ y: -6, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 >
                   {/* Icon Circle */}
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-gray-100 flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
@@ -93,7 +96,7 @@ export const CoreFocusAreas = ({ className }: CoreFocusAreasProps) => {
                   <p className="text-brand-black text-[10px] sm:text-xs md:text-sm font-medium leading-tight">
                     {area.label}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>

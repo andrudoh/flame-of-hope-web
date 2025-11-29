@@ -198,9 +198,20 @@ const AboutPage = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
               {[...Array(8)].map((_, index) => (
                 <div key={index} className="text-center space-y-4">
-                  <div className="relative mx-auto w-32 h-32">
-                    <div className="absolute inset-0 rounded-full border-[12px] border-brand-main border-r-brand-red border-t-transparent border-l-transparent rotate-45"></div>
-                    <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-200">
+                  <div className="relative mx-auto w-[150px] h-[230px]">
+                    <div
+                      className="pointer-events-none absolute inset-0 border-[12px] border-brand-main rounded-t-[16px] rounded-b-[999px]"
+                      style={{
+                        clipPath: "polygon(0 0, 100% 0, 100% 70%, 0 100%)",
+                      }}
+                    ></div>
+                    <div
+                      className="pointer-events-none absolute inset-0 border-[12px] border-brand-red rounded-t-[16px] rounded-b-[999px]"
+                      style={{
+                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 70%)",
+                      }}
+                    ></div>
+                    <div className="relative w-full h-full rounded-t-[16px] rounded-b-[999px] overflow-hidden bg-gray-200">
                       <Image
                         src={trusteeImage}
                         alt="Board member"

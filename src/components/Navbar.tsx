@@ -1,11 +1,14 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { AnimatePresence, motion } from "framer-motion";
 import logo from "@/assets/logo.png";
 
 export const Navbar = () => {
   const [logoError, setLogoError] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const { pathname } = useRouter();
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -54,15 +57,23 @@ export const Navbar = () => {
 
         {/* Desktop Navigation Links */}
         <div className="hidden items-center space-x-4 md:flex lg:space-x-6 xl:space-x-8 flex-1 justify-center">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="nav-link-border text-white transition-fx text-sm font-medium lg:text-base hover:text-brand-main"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`nav-link-border text-white transition-fx text-sm font-medium lg:text-base hover:text-brand-main ${
+                  isActive ? "text-brand-main nav-link-border-active" : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Desktop Contact Us Button */}
@@ -99,29 +110,56 @@ export const Navbar = () => {
         </button>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-brand-secondary md:hidden z-30 shadow-lg">
-            <div className="flex flex-col p-4 space-y-3">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-white hover:text-brand-main transition-fx text-base py-2 px-4"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link
-                href="/contact"
-                className="bg-brand-red text-white px-4 py-2 rounded-md hover:opacity-75 transition-fx text-base font-medium text-center mt-2"
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              <motion.div
+                key="overlay"
+                className="fixed inset-0 bg-black/40 md:hidden z-30"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setMobileMenuOpen(false)}
+              />
+              <motion.div
+                key="menu"
+                className="absolute top-full left-0 w-full bg-brand-secondary md:hidden z-40 shadow-lg"
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        )}
+                <div className="flex flex-col p-4 space-y-3">
+                  {navLinks.map((link) => {
+                    const isActive =
+                      link.href === "/"
+                        ? pathname === "/"
+                        : pathname.startsWith(link.href);
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={`text-white transition-fx text-base py-2 px-4 ${
+                          isActive ? "text-brand-main" : "hover:text-brand-main"
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    );
+                  })}
+                  <Link
+                    href="/contact"
+                    className="bg-brand-red text-white px-4 py-2 rounded-md hover:opacity-75 transition-fx text-base font-medium text-center mt-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );

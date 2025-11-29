@@ -1,5 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import volunteerImage from "@/assets/landing/get-involved/volunteer.png";
 import sponsorImage from "@/assets/landing/get-involved/sponsor.png";
 
@@ -10,6 +11,7 @@ const initiatives = [
     description:
       "Volunteers are the heartbeat of our organization. Whether you're a professional, student, or simply someone with a passion for helping others, your time and skills can make a world of difference. From organizing community outreach programs to assisting in our clinics and education centers, there's a role for everyone at FLAME-OF-HOPE.",
     cta: "Volunteer",
+    href: "/volunteer",
     image: volunteerImage,
     accentColor: "bg-[#b1e7d4]",
   },
@@ -19,6 +21,7 @@ const initiatives = [
     description:
       "By becoming a sponsor, you directly contribute to our programs that provide essential resources, education, and healthcare to those who need it most. Your sponsorship can help fund medical outreach, support economic empowerment initiatives, and provide care for orphans, widows, and the elderly.",
     cta: "Sponsor",
+    href: "/sponsor",
     image: sponsorImage,
     accentColor: "bg-[#c9f4d9]",
   },
@@ -34,7 +37,7 @@ export const GetInvolvedSection = () => {
 
         <div className="space-y-6">
           {initiatives.map(
-            ({ id, title, description, cta, image, accentColor }) => (
+            ({ id, title, description, cta, image, accentColor, href }) => (
               <article
                 key={id}
                 className="flex flex-col md:flex-row items-center gap-6 rounded-[999px] bg-white px-4 py-6 md:px-8 md:py-6 shadow-sm"
@@ -59,11 +62,12 @@ export const GetInvolvedSection = () => {
                   </p>
                 </div>
 
-                <div
-                  className={`w-24 h-24 md:w-28 md:h-28 flex items-center justify-center rounded-full text-brand-black text-sm font-semibold ${accentColor}`}
+                <Link
+                  href={href}
+                  className={`w-24 h-24 md:w-28 md:h-28 flex items-center justify-center rounded-full text-brand-black text-sm font-semibold transition-transform hover:scale-105 ${accentColor}`}
                 >
                   {cta}
-                </div>
+                </Link>
               </article>
             )
           )}
