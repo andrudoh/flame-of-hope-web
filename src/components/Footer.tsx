@@ -1,14 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-  MapPin,
-  Mail,
-  Phone,
-} from "lucide-react";
+import { Facebook, Twitter, MapPin, Mail, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const quickLinks = [
@@ -16,18 +9,28 @@ const quickLinks = [
   { href: "/about", label: "About" },
   { href: "/programs", label: "Programs" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/news", label: "News" },
   { href: "/volunteer", label: "Volunteer" },
   { href: "/sponsor", label: "Sponsor" },
   { href: "/contact", label: "Contact Us" },
 ];
 
 const socialLinks = [
-  { href: "https://facebook.com", label: "Facebook", icon: Facebook },
-  { href: "https://instagram.com", label: "Instagram", icon: Instagram },
-  { href: "https://twitter.com", label: "Twitter", icon: Twitter },
+  {
+    href: "https://web.facebook.com/flameofhope.ng/",
+    label: "Facebook",
+    icon: Facebook,
+  },
+  {
+    href: "https://twitter.com/flameofhopenig",
+    label: "Twitter",
+    icon: Twitter,
+  },
 ];
 
 export const Footer = () => {
+  const quickLinkColumns = [quickLinks.slice(0, 4), quickLinks.slice(4)];
+
   return (
     <footer className="bg-[#0f0f0f] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,15 +72,25 @@ export const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-brand-main font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-gray-300">
-              {quickLinks.map(({ href, label }) => (
-                <li key={label}>
-                  <Link href={href} className="hover:text-white transition-fx">
-                    {label}
-                  </Link>
-                </li>
+            <div className="grid grid-cols-2 gap-x-8">
+              {quickLinkColumns.map((column, columnIndex) => (
+                <ul
+                  key={columnIndex}
+                  className="space-y-2 text-sm text-gray-300"
+                >
+                  {column.map(({ href, label }) => (
+                    <li key={label}>
+                      <Link
+                        href={href}
+                        className="hover:text-white transition-fx"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact */}
@@ -94,10 +107,10 @@ export const Footer = () => {
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-brand-main" />
                 <Link
-                  href="mailto:flameofhopenigeria@yahoo.com"
+                  href="mailto:flameofhopen@gmail.com"
                   className="hover:text-white transition-fx"
                 >
-                  flameofhopenigeria@yahoo.com
+                  flameofhopen@gmail.com
                 </Link>
               </li>
               <li className="flex items-center gap-3">

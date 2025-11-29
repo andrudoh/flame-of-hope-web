@@ -1,3 +1,4 @@
+import * as React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +8,76 @@ import { PageHero } from "@/components/PageHero";
 import volunteerImage from "@/assets/programs-page/image_3.png";
 
 const VolunteerPage = () => {
+  const [formValues, setFormValues] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+    availability: "",
+  });
+  const [feedback, setFeedback] = React.useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const handleChange =
+    (field: keyof typeof formValues) =>
+    (
+      event: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
+      setFormValues((prev) => ({ ...prev, [field]: event.target.value }));
+    };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: `Volunteer Form: ${formValues.name}`,
+          fields: [
+            { label: "Name", value: formValues.name },
+            { label: "Email", value: formValues.email },
+            { label: "Phone", value: formValues.phone },
+            { label: "Gender", value: formValues.gender },
+            { label: "Availability", value: formValues.availability },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      setFeedback({
+        type: "success",
+        message: "Thank you for volunteering! Our team will contact you soon.",
+      });
+      setFormValues({
+        name: "",
+        email: "",
+        phone: "",
+        gender: "",
+        availability: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setFeedback({
+        type: "error",
+        message: "Unable to submit your details. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -59,13 +130,16 @@ const VolunteerPage = () => {
                 towards a common goal.
               </p>
 
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
                   Name*
                   <input
                     type="text"
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                     placeholder="Full name"
+                    value={formValues.name}
+                    onChange={handleChange("name")}
+                    required
                   />
                 </label>
 
@@ -75,6 +149,9 @@ const VolunteerPage = () => {
                     type="email"
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                     placeholder="Email"
+                    value={formValues.email}
+                    onChange={handleChange("email")}
+                    required
                   />
                 </label>
 
@@ -84,12 +161,19 @@ const VolunteerPage = () => {
                     type="tel"
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                     placeholder="Phone"
+                    value={formValues.phone}
+                    onChange={handleChange("phone")}
+                    required
                   />
                 </label>
 
                 <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
                   Gender
-                  <select className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white">
+                  <select
+                    className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
+                    value={formValues.gender}
+                    onChange={handleChange("gender")}
+                  >
                     <option value="">Select gender</option>
                     <option value="female">Female</option>
                     <option value="male">Male</option>
@@ -103,17 +187,32 @@ const VolunteerPage = () => {
                     rows={4}
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main resize-none bg-white"
                     placeholder="Tell us how you’d like to serve"
+                    value={formValues.availability}
+                    onChange={handleChange("availability")}
+                    required
                   ></textarea>
                 </label>
 
                 <motion.button
-                  type="button"
+                  type="submit"
                   className="inline-flex items-center justify-center bg-brand-main text-white px-6 py-3 rounded-xl font-semibold shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-main"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: submitting ? 1 : 1.02 }}
+                  whileTap={{ scale: submitting ? 1 : 0.98 }}
+                  disabled={submitting}
                 >
-                  Submit Now
+                  {submitting ? "Sending..." : "Submit Now"}
                 </motion.button>
+                {feedback ? (
+                  <p
+                    className={`text-sm ${
+                      feedback.type === "success"
+                        ? "text-emerald-600"
+                        : "text-brand-red"
+                    }`}
+                  >
+                    {feedback.message}
+                  </p>
+                ) : null}
               </form>
             </div>
           </motion.div>

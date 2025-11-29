@@ -9,6 +9,7 @@ import programImageOne from "@/assets/programs-page/image_1.png";
 import programImageTwo from "@/assets/programs-page/image_2.png";
 import programImageThree from "@/assets/programs-page/image_3.png";
 import programImageFour from "@/assets/programs-page/image_4.png";
+import programImageFive from "@/assets/programs-page/image_5.jpeg";
 
 type ProgramHighlight = {
   id: string;
@@ -23,15 +24,23 @@ const programHighlights: ProgramHighlight[] = [
     id: "prevention",
     title: "Prevention Awareness",
     description:
-      "We reach key populations including Female Sex Workers (FSWs) with behavioral change communication, peer education, HIV/TB/Hepatitis screening, and reproductive health services.",
+      "We reach key populations and general population with behavioral change communication, peer education, HIV/TB/Hepatitis screening, and reproductive health services.",
     image: programImageOne,
+    accent: "brand-red",
+  },
+  {
+    id: "gbv",
+    title: "Gender Based Violence (GBV)",
+    description:
+      "We provide support and counseling to survivors of gender-based violence (GBV) and help them rebuild their lives. We also conduct awareness campaigns to prevent GBV and promote gender equality.",
+    image: programImageFive,
     accent: "brand-red",
   },
   {
     id: "economic",
     title: "Economic Empowerment",
     description:
-      "Our vocational training and business orientation programs improve the financial independence of women and youth. We provide skill acquisition for FSWs, youth, and women to help them achieve dignity through labor.",
+      "Our vocational training and business orientation programs improve the financial independence of women and youth. We provide skill acquisition for youths, women and girls to help them achieve dignity through labor and entrepreneurship.",
     image: programImageTwo,
     accent: "brand-red",
   },

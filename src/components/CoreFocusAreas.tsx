@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import {
-  Users,
+  Shield,
   TestTube,
   GraduationCap,
   Syringe,
@@ -23,9 +23,9 @@ type FocusArea = {
 
 const focusAreas: FocusArea[] = [
   {
-    id: "kps",
-    label: "Key Population Intervention (KPS)",
-    icon: Users,
+    id: "gbv",
+    label: "Gender-Based Violence (GBV)",
+    icon: Shield,
   },
   {
     id: "hts",

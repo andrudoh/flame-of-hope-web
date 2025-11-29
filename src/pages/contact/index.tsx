@@ -2,19 +2,92 @@ import * as React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Facebook, Linkedin, Twitter, Youtube, Instagram } from "lucide-react";
+import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 
 const socialLinks = [
-  { id: "fb", icon: Facebook, href: "https://facebook.com" },
+  {
+    id: "fb",
+    icon: Facebook,
+    href: "https://web.facebook.com/flameofhope.ng/",
+  },
   { id: "linkedin", icon: Linkedin, href: "https://linkedin.com" },
-  { id: "twitter", icon: Twitter, href: "https://twitter.com" },
-  { id: "insta", icon: Instagram, href: "https://instagram.com" },
+  {
+    id: "twitter",
+    icon: Twitter,
+    href: "https://twitter.com/flameofhopenig",
+  },
   { id: "youtube", icon: Youtube, href: "https://youtube.com" },
 ];
 
 const ContactPage = () => {
+  const [formValues, setFormValues] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [feedback, setFeedback] = React.useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const handleChange =
+    (field: keyof typeof formValues) =>
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormValues((prev) => ({ ...prev, [field]: event.target.value }));
+    };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: `Contact Form: ${formValues.subject || formValues.name}`,
+          fields: [
+            { label: "Name", value: formValues.name },
+            { label: "Email", value: formValues.email },
+            { label: "Phone", value: formValues.phone },
+            { label: "Subject", value: formValues.subject },
+            { label: "Message", value: formValues.message },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      setFeedback({
+        type: "success",
+        message: "Thank you! We will reach out to you shortly.",
+      });
+      setFormValues({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setFeedback({
+        type: "error",
+        message: "There was an issue sending your message. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -45,7 +118,7 @@ const ContactPage = () => {
                 </h2>
               </div>
 
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
                     Name*
@@ -53,6 +126,9 @@ const ContactPage = () => {
                       type="text"
                       className="rounded-[18px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                       placeholder="Full name"
+                      value={formValues.name}
+                      onChange={handleChange("name")}
+                      required
                     />
                   </label>
                   <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
@@ -61,6 +137,9 @@ const ContactPage = () => {
                       type="email"
                       className="rounded-[18px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                       placeholder="Email"
+                      value={formValues.email}
+                      onChange={handleChange("email")}
+                      required
                     />
                   </label>
                 </div>
@@ -72,6 +151,9 @@ const ContactPage = () => {
                       type="tel"
                       className="rounded-[18px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                       placeholder="Phone"
+                      value={formValues.phone}
+                      onChange={handleChange("phone")}
+                      required
                     />
                   </label>
                   <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
@@ -80,6 +162,9 @@ const ContactPage = () => {
                       type="text"
                       className="rounded-[18px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                       placeholder="Subject"
+                      value={formValues.subject}
+                      onChange={handleChange("subject")}
+                      required
                     />
                   </label>
                 </div>
@@ -90,17 +175,34 @@ const ContactPage = () => {
                     rows={5}
                     className="rounded-[18px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main resize-none bg-gray-50"
                     placeholder="What would you like to discuss?"
+                    value={formValues.message}
+                    onChange={handleChange("message")}
+                    required
                   ></textarea>
                 </label>
 
-                <motion.button
-                  type="button"
-                  className="inline-flex items-center justify-center bg-brand-main text-white px-6 py-3 rounded-xl font-semibold shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-main"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Submit Now
-                </motion.button>
+                <div className="space-y-3">
+                  <motion.button
+                    type="submit"
+                    className="inline-flex items-center justify-center bg-brand-main text-white px-6 py-3 rounded-xl font-semibold shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-main disabled:opacity-70"
+                    whileHover={{ scale: submitting ? 1 : 1.02 }}
+                    whileTap={{ scale: submitting ? 1 : 0.98 }}
+                    disabled={submitting}
+                  >
+                    {submitting ? "Sending..." : "Submit Now"}
+                  </motion.button>
+                  {feedback ? (
+                    <p
+                      className={`text-sm ${
+                        feedback.type === "success"
+                          ? "text-emerald-600"
+                          : "text-brand-red"
+                      }`}
+                    >
+                      {feedback.message}
+                    </p>
+                  ) : null}
+                </div>
               </form>
             </div>
 
@@ -131,10 +233,10 @@ const ContactPage = () => {
                   Email Address
                 </p>
                 <Link
-                  href="mailto:flameofhopenigeria@yahoo.com"
+                  href="mailto:flameofhopen@gmail.com"
                   className="text-sm text-brand-main underline"
                 >
-                  flameofhopenigeria@yahoo.com
+                  flameofhopen@gmail.com
                 </Link>
               </div>
 

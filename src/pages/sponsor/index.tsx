@@ -1,3 +1,4 @@
+import * as React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -8,6 +9,75 @@ import batonImage from "@/assets/sponsor-page/image_2.png";
 import formImage from "@/assets/sponsor-page/form-bg.png";
 
 const SponsorPage = () => {
+  const [formValues, setFormValues] = React.useState({
+    organization: "",
+    email: "",
+    phone: "",
+    level: "",
+    message: "",
+  });
+  const [feedback, setFeedback] = React.useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [submitting, setSubmitting] = React.useState(false);
+
+  const handleChange =
+    (field: keyof typeof formValues) =>
+    (
+      event: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
+      setFormValues((prev) => ({ ...prev, [field]: event.target.value }));
+    };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: `Sponsor Form: ${formValues.organization || formValues.email}`,
+          fields: [
+            { label: "Organization / Name", value: formValues.organization },
+            { label: "Email", value: formValues.email },
+            { label: "Phone", value: formValues.phone },
+            { label: "Sponsorship Level", value: formValues.level },
+            { label: "Message", value: formValues.message },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      setFeedback({
+        type: "success",
+        message: "Thank you! Our partnerships team will reach out shortly.",
+      });
+      setFormValues({
+        organization: "",
+        email: "",
+        phone: "",
+        level: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setFeedback({
+        type: "error",
+        message: "Unable to submit your request. Please try again later.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <>
       <Head>
@@ -49,7 +119,7 @@ const SponsorPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
-            <div className="relative h-56 sm:h-64 rounded-3xl overflow-hidden shadow">
+            <div className="relative h-56 sm:h-64 rounded-3xl overflow-hidden shadow order-2 lg:order-1 mt-6 lg:mt-0">
               <Image
                 src={batonImage}
                 alt="Passing the baton"
@@ -59,7 +129,7 @@ const SponsorPage = () => {
               />
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 order-1 lg:order-2">
               <p className="text-brand-red font-semibold text-lg">
                 Why Sponsor Us?
               </p>
@@ -125,13 +195,16 @@ const SponsorPage = () => {
             </div>
 
             <div className="p-6 sm:p-8 lg:p-10 space-y-4 bg-[#f8f8f8]">
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
                   Organization / Name*
                   <input
                     type="text"
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                     placeholder="Your organization or full name"
+                    value={formValues.organization}
+                    onChange={handleChange("organization")}
+                    required
                   />
                 </label>
 
@@ -141,6 +214,9 @@ const SponsorPage = () => {
                     type="email"
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                     placeholder="Email"
+                    value={formValues.email}
+                    onChange={handleChange("email")}
+                    required
                   />
                 </label>
 
@@ -150,12 +226,19 @@ const SponsorPage = () => {
                     type="tel"
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
                     placeholder="Phone"
+                    value={formValues.phone}
+                    onChange={handleChange("phone")}
+                    required
                   />
                 </label>
 
                 <label className="flex flex-col text-sm font-semibold text-brand-black space-y-2">
                   Sponsorship Level
-                  <select className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white">
+                  <select
+                    className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main bg-white"
+                    value={formValues.level}
+                    onChange={handleChange("level")}
+                  >
                     <option value="">Select level</option>
                     <option value="gold">Gold</option>
                     <option value="silver">Silver</option>
@@ -169,17 +252,32 @@ const SponsorPage = () => {
                     rows={4}
                     className="rounded-[16px] border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-main resize-none bg-white"
                     placeholder="Tell us how you'd like to partner with us"
+                    value={formValues.message}
+                    onChange={handleChange("message")}
+                    required
                   ></textarea>
                 </label>
 
                 <motion.button
-                  type="button"
+                  type="submit"
                   className="inline-flex items-center justify-center bg-brand-main text-white px-6 py-3 rounded-xl font-semibold shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-main"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: submitting ? 1 : 1.02 }}
+                  whileTap={{ scale: submitting ? 1 : 0.98 }}
+                  disabled={submitting}
                 >
-                  Submit Now
+                  {submitting ? "Sending..." : "Submit Now"}
                 </motion.button>
+                {feedback ? (
+                  <p
+                    className={`text-sm ${
+                      feedback.type === "success"
+                        ? "text-emerald-600"
+                        : "text-brand-red"
+                    }`}
+                  >
+                    {feedback.message}
+                  </p>
+                ) : null}
               </form>
             </div>
           </motion.div>

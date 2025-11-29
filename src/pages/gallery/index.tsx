@@ -6,10 +6,13 @@ import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import programsImageOne from "@/assets/programs-page/image_1.png";
-import programsImageTwo from "@/assets/programs-page/image_2.png";
-import programsImageThree from "@/assets/programs-page/image_3.png";
-import programsImageFour from "@/assets/programs-page/image_4.png";
+import galleryOne from "@/assets/gallery-page/image_1.jpg";
+import galleryTwo from "@/assets/gallery-page/image_2.jpg";
+import galleryThree from "@/assets/gallery-page/image_3.jpg";
+import galleryFour from "@/assets/gallery-page/image_4.jpg";
+import galleryFive from "@/assets/gallery-page/image_5.jpg";
+import gallerySix from "@/assets/gallery-page/image_6.jpg";
+import gallerySeven from "@/assets/gallery-page/image_7.jpg";
 
 type GalleryItem = {
   id: string;
@@ -23,111 +26,66 @@ type GalleryItem = {
 const galleryItems: GalleryItem[] = [
   {
     id: "gallery-1",
-    date: "May 02",
+    date: "Nov 12",
     description:
-      "Community health volunteers prepare HIV self-test kits before a night outreach in Jos South.",
-    location: "Jos South",
-    category: "Health Outreach",
-    image: programsImageOne,
+      "Sponsorship handshake marks the beginning of a new corporate partnership supporting our health outreaches.",
+    location: "Jos",
+    category: "Partnership",
+    image: galleryOne,
   },
   {
     id: "gallery-2",
-    date: "May 04",
+    date: "Nov 15",
     description:
-      "Vocational training session where young women learn machine maintenance for tailoring businesses.",
-    location: "Jos North",
-    category: "Economic Empowerment",
-    image: programsImageTwo,
+      "Volunteers preparing food packs for distribution across orphan and vulnerable children hubs in Plateau State.",
+    location: "Gyero",
+    category: "Food Support",
+    image: galleryTwo,
   },
   {
     id: "gallery-3",
-    date: "May 07",
+    date: "Nov 18",
     description:
-      "AYP ambassadors leading a campus conversation on positive lifestyle choices and safe spaces.",
-    location: "University of Jos",
-    category: "AYP Forum",
-    image: programsImageThree,
+      "Community champions sharing protective supplies before heading out for a GBV awareness campaign.",
+    location: "Jos North",
+    category: "GBV Awareness",
+    image: galleryThree,
   },
   {
     id: "gallery-4",
-    date: "May 09",
+    date: "Nov 20",
     description:
-      "Support group meeting that connected OVC caregivers with nutrition packs and psychosocial care.",
+      "Passing the baton—our newest partner formally transfers the symbolic stick to our youth leadership council.",
     location: "Barkin Ladi",
-    category: "OVC Support",
-    image: programsImageFour,
+    category: "Youth Leadership",
+    image: galleryFour,
   },
   {
     id: "gallery-5",
-    date: "May 11",
+    date: "Nov 22",
     description:
-      "Peer educators displaying sanitary kits ahead of a reproductive health dialogue with FSWs.",
-    location: "Langtang",
-    category: "Peer Education",
-    image: programsImageOne,
+      "Students at the Innovation Hub co-create new advocacy materials on malaria prevention for peer education.",
+    location: "Innov Hub",
+    category: "Innovation",
+    image: galleryFive,
   },
   {
     id: "gallery-6",
-    date: "May 13",
+    date: "Nov 25",
     description:
-      "Participants practicing basic bookkeeping during the Economic Empowerment bootcamp.",
-    location: "Jos Central",
-    category: "Workshop",
-    image: programsImageTwo,
+      "Aerial view of our mobile clinic route covering mountain settlements outside Jos Plateau.",
+    location: "Plateau",
+    category: "Field Operations",
+    image: gallerySix,
   },
   {
     id: "gallery-7",
-    date: "May 14",
+    date: "Nov 26",
     description:
-      "Teen mentors celebrating after a mural project that highlights hope for adolescents in Jos North.",
-    location: "Jos North",
-    category: "Creative Project",
-    image: programsImageThree,
-  },
-  {
-    id: "gallery-8",
-    date: "May 16",
-    description:
-      "Nurses briefing community health champions before a mobile vaccination sortie.",
-    location: "Mangu",
-    category: "Vaccination Drive",
-    image: programsImageFour,
-  },
-  {
-    id: "gallery-9",
-    date: "May 18",
-    description:
-      "Nutrition corner showcasing fresh produce that complements the OVC weekend meal packs.",
-    location: "Gyero",
-    category: "Nutrition",
-    image: programsImageOne,
-  },
-  {
-    id: "gallery-10",
-    date: "May 20",
-    description:
-      "Women-led cooperative reviewing savings goals after completing a microgrant milestone.",
-    location: "Jos South",
-    category: "Cooperative",
-    image: programsImageTwo,
-  },
-  {
-    id: "gallery-11",
-    date: "May 22",
-    description:
-      "AYP facilitators rehearsing a skit on stigma reduction ahead of a community theatre tour.",
-    location: "Pankshin",
-    category: "Theatre Outreach",
-    image: programsImageThree,
-  },
-  {
-    id: "gallery-12",
-    date: "May 24",
-    description:
-      "Children from an after-school club displaying artwork inspired by the Flame of Hope vision.",
-    location: "Jos East",
-    category: "After-school Club",
-    image: programsImageFour,
+      "Celebration after the mentorship graduation where volunteers shared success stories with new cohorts.",
+    location: "Jos",
+    category: "Mentorship",
+    image: gallerySeven,
   },
 ];
 
@@ -181,7 +139,7 @@ const GalleryPage = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Image
-                    src={item.image}
+                    src={item.image.src || ""}
                     alt={item.description}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
