@@ -1,12 +1,12 @@
 import * as React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import { User } from "lucide-react";
 import populationImage from "@/assets/about-page/first.png";
 import aboutFlameImage from "@/assets/landing/about/about_2.png";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { ImpactSection } from "@/components/ImpactSection";
-import trusteeImage from "@/assets/about-page/trustee.png";
 
 const PopulationSegmentsCopy = `The United Nation Organization (UNO) through its agency for Population Activities (UNFPA) categorized population into different groups: The Upper, Middle and The Lower groups. Research has shown that the lower group is made up of mainly youths, unemployed, women, widows and the aged; who sometimes could not afford the basic means of livelihood and thereby live in poverty and lack and are susceptible to various diseases, and are also exposed to various criminal tendencies which in-turn affects the entire society.`;
 
@@ -195,8 +195,14 @@ const AboutPage = () => {
               Our Board Of Trustees
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
-              {[...Array(8)].map((_, index) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+              {[
+                "Mary Udoh",
+                "Andrew Henry",
+                "Pancin Ret",
+                "Naomi Yohanna",
+                "Sunday Yakubu",
+              ].map((name, index) => (
                 <div key={index} className="text-center space-y-4">
                   <div className="relative mx-auto w-[150px] h-[230px]">
                     <div
@@ -211,18 +217,12 @@ const AboutPage = () => {
                         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 70%)",
                       }}
                     ></div>
-                    <div className="relative w-full h-full rounded-t-[16px] rounded-b-[999px] overflow-hidden bg-gray-200">
-                      <Image
-                        src={trusteeImage}
-                        alt="Board member"
-                        fill
-                        className="object-cover"
-                      />
+                    <div className="relative w-full h-full rounded-t-[16px] rounded-b-[999px] overflow-hidden bg-gray-200 flex items-center justify-center">
+                      <User className="w-20 h-20 text-gray-400" />
                     </div>
                   </div>
                   <div>
-                    <p className="font-semibold text-brand-black">Mary Udoh</p>
-                    <p className="text-xs text-brand-ash">Position</p>
+                    <p className="font-semibold text-brand-black">{name}</p>
                   </div>
                 </div>
               ))}

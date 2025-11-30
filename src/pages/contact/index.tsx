@@ -2,7 +2,7 @@ import * as React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Twitter } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 
@@ -12,13 +12,11 @@ const socialLinks = [
     icon: Facebook,
     href: "https://web.facebook.com/flameofhope.ng/",
   },
-  { id: "linkedin", icon: Linkedin, href: "https://linkedin.com" },
   {
     id: "twitter",
     icon: Twitter,
     href: "https://twitter.com/flameofhopenig",
   },
-  { id: "youtube", icon: Youtube, href: "https://youtube.com" },
 ];
 
 const ContactPage = () => {

@@ -4,7 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import topImage from "@/assets/sponsor-page/image_1.png";
+// import topImage from "@/assets/sponsor-page/image_1.png";
+import topImage from "@/assets/sponsor-page/image_1.jpg";
 import batonImage from "@/assets/sponsor-page/image_2.png";
 import formImage from "@/assets/sponsor-page/form-bg.png";
 

@@ -36,7 +36,23 @@ export const Navbar = () => {
           >
             <div className="flex items-center">
               {/* Logo Image - Falls back to SVG if image not found */}
-              <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center relative">
+              <div className="w-20 h-20 md:w-24 md:h-24 lg:w-36 lg:h-36 flex items-center justify-center relative">
+                {!logoError ? (
+                  <Image
+                    src={logo}
+                    alt="Flame of Hope Logo"
+                    width={120}
+                    height={120}
+                    className="object-cover"
+                    onError={() => setLogoError(true)}
+                  />
+                ) : (
+                  <span className="text-brand-main font-semibold text-base md:text-lg lg:text-xl leading-tight">
+                    FOH
+                  </span>
+                )}
+              </div>
+              {/* <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center relative">
                 {!logoError ? (
                   <Image
                     src={logo}
@@ -51,7 +67,7 @@ export const Navbar = () => {
                     FOH
                   </span>
                 )}
-              </div>
+              </div> */}
             </div>
           </Link>
         </div>
