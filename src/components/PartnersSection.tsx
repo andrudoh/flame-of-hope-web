@@ -42,7 +42,7 @@ export const PartnersSection = () => {
                   style={{ maxWidth: "150px" }}
                 />
                 {/* Desktop Tooltip */}
-                <div className="hidden lg:block absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-brand-black text-white text-sm font-semibold rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none z-10 shadow-lg max-w-xs">
+                <div className="hidden lg:block absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-brand-black text-white text-sm font-semibold rounded-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 pointer-events-none z-10 shadow-lg max-w-sm whitespace-normal text-center">
                   {name}
                   {/* Arrow */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1.5">
