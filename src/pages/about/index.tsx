@@ -1,7 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { User } from "lucide-react";
+import maryUdohImage from "@/assets/about-page/mary_udoh.jpeg";
+import andrewHenryImage from "@/assets/about-page/andrew_henry.jpeg";
+import pancinRetImage from "@/assets/about-page/pancin_ret.jpeg";
+import naomiYohannaImage from "@/assets/about-page/naomi_yohanna.png";
+import sundayYakubuImage from "@/assets/about-page/sunday_yakubu.jpeg";
 import populationImage from "@/assets/about-page/first.png";
 import aboutFlameImage from "@/assets/landing/about/about_2.png";
 import { Layout } from "@/components/Layout";
@@ -197,12 +201,12 @@ const AboutPage = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
               {[
-                "Mary Udoh",
-                "Andrew Henry",
-                "Pancin Ret",
-                "Naomi Yohanna",
-                "Sunday Yakubu",
-              ].map((name, index) => (
+                { name: "Mary Udoh", image: maryUdohImage },
+                { name: "Andrew Henry", image: andrewHenryImage },
+                { name: "Pancin Ret", image: pancinRetImage },
+                { name: "Naomi Yohanna", image: naomiYohannaImage },
+                { name: "Sunday Yakubu", image: sundayYakubuImage },
+              ].map((trustee, index) => (
                 <div key={index} className="text-center space-y-4">
                   <div className="relative mx-auto w-[150px] h-[230px]">
                     <div
@@ -217,12 +221,19 @@ const AboutPage = () => {
                         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 70%)",
                       }}
                     ></div>
-                    <div className="relative w-full h-full rounded-t-[16px] rounded-b-[999px] overflow-hidden bg-gray-200 flex items-center justify-center">
-                      <User className="w-20 h-20 text-gray-400" />
+                    <div className="relative w-full h-full rounded-t-[16px] rounded-b-[999px] overflow-hidden bg-gray-200">
+                      <Image
+                        src={trustee.image}
+                        alt={trustee.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   </div>
                   <div>
-                    <p className="font-semibold text-brand-black">{name}</p>
+                    <p className="font-semibold text-brand-black">
+                      {trustee.name}
+                    </p>
                   </div>
                 </div>
               ))}

@@ -10,7 +10,7 @@ import galleryOne from "@/assets/gallery-page/image_1.jpg";
 import galleryTwo from "@/assets/gallery-page/image_2.jpg";
 import galleryThree from "@/assets/gallery-page/image_3.jpg";
 import galleryFour from "@/assets/gallery-page/image_4.jpg";
-import galleryFive from "@/assets/gallery-page/image_5.jpg";
+import galleryFive from "@/assets/gallery-page/image_5.jpeg";
 import gallerySix from "@/assets/gallery-page/image_6.jpg";
 import gallerySeven from "@/assets/gallery-page/image_7.jpg";
 
@@ -26,68 +26,73 @@ type GalleryItem = {
 const galleryItems: GalleryItem[] = [
   {
     id: "gallery-1",
-    date: "Nov 12",
+    date: "Jun 17, 2025",
     description:
-      "Sponsorship handshake marks the beginning of a new corporate partnership supporting our health outreaches.",
-    location: "Jos",
-    category: "Partnership",
+      "Flame of Hope team launched their HIV prevention mobile app HEALTH9JA at NYSC Camp, Plateau State.",
+    location: "Nysc Camp, Jos South, Plateau State",
+    category: "Health Education",
     image: galleryOne,
   },
   {
     id: "gallery-2",
-    date: "Nov 15",
-    description:
-      "Volunteers preparing food packs for distribution across orphan and vulnerable children hubs in Plateau State.",
-    location: "Gyero",
-    category: "Food Support",
+    date: "Dec 1, 2024",
+    description: "World Aids Day Campus Storming in Plateau State",
+    location: "Jos North",
+    category: "World Aids Day",
     image: galleryTwo,
   },
   {
     id: "gallery-3",
-    date: "Nov 18",
+    date: "Aug 19, 2025",
     description:
-      "Community champions sharing protective supplies before heading out for a GBV awareness campaign.",
-    location: "Jos North",
-    category: "GBV Awareness",
+      "HIV/AIDS Awareness Campaign in Nyango Gel Community, Jos South",
+    location: "Jos South",
+    category: "HIV/AIDS Awareness",
     image: galleryThree,
   },
   {
     id: "gallery-4",
-    date: "Nov 20",
+    date: "Aug 20, 2025",
     description:
-      "Passing the baton—our newest partner formally transfers the symbolic stick to our youth leadership council.",
-    location: "Barkin Ladi",
-    category: "Youth Leadership",
+      "Community awareness campaign against Gender-Based Violence (GBV) in Jos North",
+    location: "Jos North",
+    category: "GBV Awareness",
     image: galleryFour,
   },
   {
     id: "gallery-5",
-    date: "Nov 22",
-    description:
-      "Students at the Innovation Hub co-create new advocacy materials on malaria prevention for peer education.",
-    location: "Innov Hub",
-    category: "Innovation",
+    date: "May 7, 2025",
+    description: "Cervical cancer awareness campaign",
+    location: "Jos North",
+    category: "Cervical Cancer Awareness",
     image: galleryFive,
   },
   {
     id: "gallery-6",
-    date: "Nov 25",
+    date: "Nov 25, 2025",
     description:
-      "Aerial view of our mobile clinic route covering mountain settlements outside Jos Plateau.",
-    location: "Plateau",
-    category: "Field Operations",
+      "Capacity-building training for Women in Jos North, Plateau State",
+    location: "Jos North",
+    category: "Capacity-building Training",
     image: gallerySix,
   },
   {
     id: "gallery-7",
-    date: "Nov 26",
+    date: "Nov 26, 2025",
     description:
-      "Celebration after the mentorship graduation where volunteers shared success stories with new cohorts.",
-    location: "Jos",
+      "Inception of the Flame of Hope Mentorship Program in Jos, Plateau State",
+    location: "Jos North",
     category: "Mentorship",
     image: gallerySeven,
   },
 ];
+
+// Sort gallery items by date (newest first)
+const sortedGalleryItems = [...galleryItems].sort((a, b) => {
+  const dateA = new Date(a.date).getTime();
+  const dateB = new Date(b.date).getTime();
+  return dateB - dateA; // Descending order (newest first)
+});
 
 const GalleryPage = () => {
   const [selectedItem, setSelectedItem] = React.useState<GalleryItem | null>(
@@ -122,7 +127,7 @@ const GalleryPage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {galleryItems.map((item, idx) => (
+            {sortedGalleryItems.map((item, idx) => (
               <motion.article
                 key={item.id}
                 className="group flex flex-col gap-3 bg-white rounded-[20px] shadow-sm p-3 transition-transform hover:-translate-y-1"
