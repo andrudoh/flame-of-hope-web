@@ -63,7 +63,7 @@ The Nigerian Women Trust Fund, sponsors of the program, reaffirmed their commitm
 
 With the successful conclusion of the workshop, stakeholders are optimistic that the Plateau State GBV M&E framework will not only improve response mechanisms but also contribute significantly to reducing incidences of gender-based violence, ultimately creating safer communities for women and girls across the state.`,
     images: [gbvImage2, gbvImage3, gbvImage4],
-    facebookUrl: "#",
+    facebookUrl: "https://m.facebook.com",
     // facebookUrl:
     //   "https://m.facebook.com/story.php?story_fbid=pfbid02rVVk2iagKZa2hXBLg83dS7uD9Qzx5pTFywLD1MrHzyQA4y2gAfRze1JSnDnE6SVPl&id=100025685483494",
   },
