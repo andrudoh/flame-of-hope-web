@@ -1,10 +1,10 @@
 import * as React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 import programImageOne from "@/assets/programs-page/image_1.png";
 import programImageTwo from "@/assets/programs-page/image_2.png";
 import programImageThree from "@/assets/programs-page/image_3.png";
@@ -65,9 +65,11 @@ const programHighlights: ProgramHighlight[] = [
 const ProgramsPage = () => {
   return (
     <>
-      <Head>
-        <title>Programs | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="Programs"
+        description="Discover Flame of Hope's comprehensive programs including Prevention Awareness, Economic Empowerment, Adolescent & Youth Programs (AYP), and OVC Care and Support. We create lasting change through initiatives that strengthen families and empower individuals across North Central Nigeria."
+        keywords="Flame of Hope programs, HIV prevention, economic empowerment, youth programs, OVC support, community health programs, Plateau State health initiatives, disease prevention, skill acquisition, vocational training"
+      />
 
       <PageHero
         title="What We Do"

@@ -1,11 +1,11 @@
 import * as React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 import galleryOne from "@/assets/gallery-page/image_1.jpg";
 import galleryTwo from "@/assets/gallery-page/image_2.jpg";
 import galleryThree from "@/assets/gallery-page/image_3.jpg";
@@ -103,9 +103,11 @@ const GalleryPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Gallery | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="Gallery"
+        description="View snapshots of hope from Flame of Hope's activities including health campaigns, training workshops, community outreach events, HIV/AIDS awareness programs, GBV sensitization, and capacity-building initiatives across Plateau State."
+        keywords="Flame of Hope gallery, community outreach photos, health campaign images, Plateau State NGO activities, HIV awareness photos, GBV sensitization, training workshops, community health events"
+      />
 
       <PageHero
         title="Gallery"

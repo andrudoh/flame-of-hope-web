@@ -1,10 +1,10 @@
 import * as React from "react";
-import Head from "next/head";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Facebook, Twitter } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 
 const socialLinks = [
   {
@@ -88,9 +88,11 @@ const ContactPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Contact Us | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Flame of Hope Centre for Poverty and Disease Control. Located at No. 1A Tafawa Balewa Street, Jos, Plateau State. Contact us via phone, email, or visit our office. We're here to answer your questions and help you get involved."
+        keywords="contact Flame of Hope, NGO contact Nigeria, Plateau State NGO address, Flame of Hope phone number, Flame of Hope email, get in touch, volunteer contact, sponsor contact"
+      />
 
       <PageHero
         title="Contact Us"

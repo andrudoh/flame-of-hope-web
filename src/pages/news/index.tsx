@@ -1,17 +1,19 @@
 import * as React from "react";
-import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 import { newsArticles } from "@/constants/news";
 
 const NewsPage = () => {
   return (
     <>
-      <Head>
-        <title>News & Updates | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="News & Updates"
+        description="Stay updated with Flame of Hope's latest news, milestones, and program highlights. Read stories about our GBV prevention initiatives, health campaigns, community outreach, capacity-building trainings, and partnerships across Plateau State."
+        keywords="Flame of Hope news, NGO updates Nigeria, Plateau State health news, GBV prevention updates, community health news, Flame of Hope activities, health awareness campaigns"
+      />
 
       <PageHero
         title="News & Updates"

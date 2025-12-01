@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 import { getNewsArticleById } from "@/constants/news";
 
 const NewsArticlePage = () => {
@@ -91,9 +91,11 @@ const NewsArticlePage = () => {
   if (!article) {
     return (
       <>
-        <Head>
-          <title>Article Not Found | Flame of Hope</title>
-        </Head>
+        <SEO
+          title="Article Not Found"
+          description="The article you're looking for doesn't exist."
+          noindex
+        />
         <PageHero
           title="Article Not Found"
           breadcrumbs={[
@@ -121,10 +123,13 @@ const NewsArticlePage = () => {
 
   return (
     <>
-      <Head>
-        <title>{article.title} | Flame of Hope</title>
-        <meta name="description" content={article.summary} />
-      </Head>
+      <SEO
+        title={article.title}
+        description={article.summary}
+        type="article"
+        publishedTime={new Date(article.date).toISOString()}
+        keywords={`Flame of Hope, ${article.title}, Plateau State, community health, NGO news`}
+      />
 
       <PageHero
         title={article.title}

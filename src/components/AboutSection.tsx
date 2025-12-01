@@ -20,7 +20,7 @@ export const AboutSection = ({ className }: AboutSectionProps) => {
               About FLAME-OF-HOPE
             </h2>
             <p className="text-brand-ash text-sm md:text-base lg:text-lg leading-relaxed max-w-lg">
-              Flame-of-Hope was established to address the alarming spread of
+              Flame of Hope was established to address the alarming spread of
               diseases and economic challenges facing marginalized populations
               in Nigeria. We focus on prevention, care, and economic empowerment
               for Female Sex Workers (FSWs), Adolescent Youth, and Orphans and

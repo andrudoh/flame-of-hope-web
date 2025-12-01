@@ -1,9 +1,9 @@
 import * as React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 // import topImage from "@/assets/sponsor-page/image_1.png";
 import topImage from "@/assets/sponsor-page/image_1.jpg";
 import batonImage from "@/assets/sponsor-page/image_2.png";
@@ -81,9 +81,11 @@ const SponsorPage = () => {
   };
   return (
     <>
-      <Head>
-        <title>Sponsor | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="Sponsor"
+        description="Partner with Flame of Hope and magnify your impact. Your sponsorship allows us to reach more people, expand our programs, and enable sustainable change in communities that need it most. Align your resources with our mission and amplify hope together."
+        keywords="sponsor Flame of Hope, NGO sponsorship Nigeria, corporate sponsorship, community health sponsorship, Plateau State NGO partners, donate to NGO, sponsor health programs"
+      />
 
       <PageHero
         title="Sponsor"

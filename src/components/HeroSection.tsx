@@ -50,7 +50,7 @@ export const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Since 2005, Flame-of-Hope Centre for Poverty and Disease Control has
+            Since 2005, Flame of Hope Centre for Poverty and Disease Control has
             been at the forefront of disease prevention, economic empowerment,
             and support for vulnerable populations in North Central Nigeria.
           </motion.p>

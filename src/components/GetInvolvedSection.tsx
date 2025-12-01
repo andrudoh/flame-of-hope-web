@@ -9,7 +9,7 @@ const initiatives = [
     id: "volunteer",
     title: "Volunteer with Us",
     description:
-      "Volunteers are the heartbeat of our organization. Whether you're a professional, student, or simply someone with a passion for helping others, your time and skills can make a world of difference. From organizing community outreach programs to assisting in our clinics and education centers, there's a role for everyone at FLAME-OF-HOPE.",
+      "Volunteers are the heartbeat of our organization. Whether you're a professional, student, or simply someone with a passion for helping others, your time and skills can make a world of difference. From organizing community outreach programs to assisting in our clinics and education centers, there's a role for everyone at FLAME OF HOPE.",
     cta: "Volunteer",
     href: "/volunteer",
     image: volunteerImage,

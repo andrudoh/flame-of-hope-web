@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import maryUdohImage from "@/assets/about-page/mary_udoh.jpeg";
 import andrewHenryImage from "@/assets/about-page/andrew_henry.jpeg";
@@ -11,17 +10,20 @@ import aboutFlameImage from "@/assets/landing/about/about_2.png";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { ImpactSection } from "@/components/ImpactSection";
+import { SEO } from "@/components/SEO";
 
 const PopulationSegmentsCopy = `The United Nation Organization (UNO) through its agency for Population Activities (UNFPA) categorized population into different groups: The Upper, Middle and The Lower groups. Research has shown that the lower group is made up of mainly youths, unemployed, women, widows and the aged; who sometimes could not afford the basic means of livelihood and thereby live in poverty and lack and are susceptible to various diseases, and are also exposed to various criminal tendencies which in-turn affects the entire society.`;
 
-const AboutNarrativeCopy = `Flame-of-Hope was established in 2005 as an indigenous, non-governmental and non-profit organization out of concern for the plight of the people in the lower-class ravaged by poverty and the alarming scourge and spread of HIV/AIDS pandemic in Nigeria in general. To rekindle hope by generating innovative strategies, through tactical approaches and programs that will reverse the prevailing trends, and make life more meaningful (for both the infected and the uninfected) to be able to make informed and rational decision about their lives on issues bothering on their health and economic condition now and in the future.`;
+const AboutNarrativeCopy = `Flame of Hope was established in 2005 as an indigenous, non-governmental and non-profit organization out of concern for the plight of the people in the lower-class ravaged by poverty and the alarming scourge and spread of HIV/AIDS pandemic in Nigeria in general. To rekindle hope by generating innovative strategies, through tactical approaches and programs that will reverse the prevailing trends, and make life more meaningful (for both the infected and the uninfected) to be able to make informed and rational decision about their lives on issues bothering on their health and economic condition now and in the future.`;
 
 const AboutPage = () => {
   return (
     <>
-      <Head>
-        <title>About | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="About Us"
+        description="Learn about Flame of Hope Centre for Poverty and Disease Control. Established in 2005, we are a registered NGO in Nigeria dedicated to disease prevention, economic empowerment, and support for vulnerable populations including youth, women, widows, and children in North Central Nigeria."
+        keywords="about Flame of Hope, NGO Nigeria, disease control organization, poverty alleviation, community health, Plateau State NGO, Board of Trustees, mission vision, HIV prevention, economic empowerment"
+      />
       <>
         <PageHero
           title="About Us"
@@ -77,7 +79,7 @@ const AboutPage = () => {
                   About FLAME-OF-HOPE
                 </h2>
                 <p className="text-sm md:text-base text-brand-ash font-normal">
-                  FLAME-OF-HOPE Centre for Poverty and Disease Control is a
+                  FLAME OF HOPE Centre for Poverty and Disease Control is a
                   charity, non-governmental, non-religious Organization
                   registered in Nigeria in 2006 under the Companies and Allied
                   Matters Acts 1990 (Registration No. CAC/IT/NO 22162).
@@ -118,7 +120,7 @@ const AboutPage = () => {
               <div className="bg-brand-secondary text-white rounded-3xl p-8 lg:p-10 space-y-8">
                 <h3 className="text-2xl lg:text-3xl font-bold">Our Vision</h3>
                 <p className="w-full text-sm font-normal md:text-base lg:w-[80%]">
-                  FLAME-OF-HOPE envisages a society where maximum attention is
+                  FLAME OF HOPE envisages a society where maximum attention is
                   given to combating various factors which prevent the Youth,
                   Women and Children from attaining their full potentials and
                   self actualization.

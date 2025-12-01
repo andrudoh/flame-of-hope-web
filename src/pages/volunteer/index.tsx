@@ -1,10 +1,10 @@
 import * as React from "react";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
+import { SEO } from "@/components/SEO";
 import volunteerImage from "@/assets/programs-page/image_3.png";
 
 const VolunteerPage = () => {
@@ -80,9 +80,11 @@ const VolunteerPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Volunteer | Flame of Hope</title>
-      </Head>
+      <SEO
+        title="Volunteer"
+        description="Join Flame of Hope as a volunteer and help us make a real difference in communities across Plateau State. Whether you have a few hours or can commit long-term, your support is invaluable in empowering vulnerable populations."
+        keywords="volunteer Flame of Hope, NGO volunteer Nigeria, Plateau State volunteer opportunities, community service, volunteer health programs, volunteer opportunities Jos"
+      />
 
       <PageHero
         title="Volunteer"
