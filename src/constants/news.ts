@@ -62,9 +62,10 @@ One of the participants remarked, "This framework is a breakthrough. It gives us
 The Nigerian Women Trust Fund, sponsors of the program, reaffirmed their commitment to supporting initiatives that promote gender justice, women's empowerment, and the protection of vulnerable groups in Nigeria.
 
 With the successful conclusion of the workshop, stakeholders are optimistic that the Plateau State GBV M&E framework will not only improve response mechanisms but also contribute significantly to reducing incidences of gender-based violence, ultimately creating safer communities for women and girls across the state.`,
-    images: [gbvImage1, gbvImage2, gbvImage3, gbvImage4],
-    facebookUrl:
-      "https://m.facebook.com/story.php?story_fbid=pfbid02rVVk2iagKZa2hXBLg83dS7uD9Qzx5pTFywLD1MrHzyQA4y2gAfRze1JSnDnE6SVPl&id=100025685483494",
+    images: [gbvImage2, gbvImage3, gbvImage4],
+    facebookUrl: "#",
+    // facebookUrl:
+    //   "https://m.facebook.com/story.php?story_fbid=pfbid02rVVk2iagKZa2hXBLg83dS7uD9Qzx5pTFywLD1MrHzyQA4y2gAfRze1JSnDnE6SVPl&id=100025685483494",
   },
   {
     id: "gbv-sensitization-nyango-gel-aug-2025",
