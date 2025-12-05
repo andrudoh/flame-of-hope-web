@@ -23,8 +23,8 @@ export const AboutSection = ({ className }: AboutSectionProps) => {
               Flame of Hope was established to address the alarming spread of
               diseases and economic challenges facing marginalized populations
               in Nigeria. We focus on prevention, care, and economic empowerment
-              for Female Sex Workers (FSWs), Adolescent Youth, and Orphans and
-              Vulnerable Children (OVC).
+              for Women / Female Sex Workers (FSWs), Adolescent Youth, and
+              Orphans and Vulnerable Children (OVC).
             </p>
             <Link
               href="/about"

@@ -5,19 +5,23 @@ import gaviLogo from "@/assets/landing/sponsors/GAVI_Logo_englisch.webp";
 import nwtfLogo from "@/assets/landing/sponsors/NWTF Logo.jpg";
 import pepfarLogo from "@/assets/landing/sponsors/PEPFAR Logo.jpg";
 import sfhLogo from "@/assets/landing/sponsors/SFH.jpeg";
+import ivac from "@/assets/landing/sponsors/IVAC.jpg";
+import wava from "@/assets/landing/sponsors/WAVA.jpg";
 
 const partners = [
   { name: "The Challenge Initiative (TCI)", image: downloadLogo },
-  {
-    name: "Global Alliance for Vaccines and Immunization (GAVI)",
-    image: gaviLogo,
-  },
+  // {
+  //   name: "Global Alliance for Vaccines and Immunization (GAVI)",
+  //   image: gaviLogo,
+  // },
   { name: "Nigerian Women Trust Fund (NWTF)", image: nwtfLogo },
   {
     name: "US Embassy in Nigeria (PEPFAR)",
     image: pepfarLogo,
   },
   { name: "Society for Family Health (SFH)", image: sfhLogo },
+  { name: "International Vaccine Access Center (IVAC)", image: ivac },
+  { name: "Women Advocates for Vaccine Access (WAVA)", image: wava },
 ];
 
 export const PartnersSection = () => {

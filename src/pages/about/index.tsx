@@ -147,6 +147,7 @@ const AboutPage = () => {
                   {[
                     "Key Population Intervention (KPIs)",
                     "HIV Testing Services (HTS)",
+                    "GBV Prevention Awareness Campaign",
                     "Adolescent & Youth Program (AYP)",
                     "Vaccination & Immunization Campaign",
                     "Sexual Reproductive Health Awareness",
