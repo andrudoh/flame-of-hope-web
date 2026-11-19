@@ -7,7 +7,7 @@ import {
   Syringe,
   Heart,
   TrendingUp,
-  Baby,
+  ShieldPlus,
   HandHeart,
 } from "lucide-react";
 
@@ -53,9 +53,9 @@ const focusAreas: FocusArea[] = [
     icon: TrendingUp,
   },
   {
-    id: "ovc",
-    label: "OVC Support",
-    icon: Baby,
+    id: "hepatitis",
+    label: "Hepatitis Awareness & Prevention",
+    icon: ShieldPlus,
   },
   {
     id: "community",
